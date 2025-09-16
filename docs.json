@@ -12,41 +12,27 @@
     "languages": [
       {
         "language": "en",
-        "dropdowns": [
+        "pages": [
           {
-            "dropdown": "Documentation",
-            "icon": "book",
-            "description": "Complete guide to AromaCHAT",
-            "pages": [
-              {
-                "group": "Getting started",
-                "pages": ["index", "quickstart"]
-              },
-              {
-                "group": "Legal",
-                "pages": ["legal/terms-of-service", "legal/privacy-policy"]
-              }
-            ]
+            "group": "Getting started",
+            "pages": ["index", "quickstart"]
+          },
+          {
+            "group": "Legal",
+            "pages": ["legal/terms-of-service", "legal/privacy-policy"]
           }
         ]
       },
       {
         "language": "pt-BR",
-        "dropdowns": [
+        "pages": [
           {
-            "dropdown": "Documentação",
-            "icon": "book",
-            "description": "Guia completo do AromaCHAT",
-            "pages": [
-              {
-                "group": "Começando",
-                "pages": ["pt/index", "pt/quickstart"]
-              },
-              {
-                "group": "Legal",
-                "pages": ["pt/legal/terms-of-service", "pt/legal/privacy-policy"]
-              }
-            ]
+            "group": "Começando",
+            "pages": ["pt/index", "pt/quickstart"]
+          },
+          {
+            "group": "Legal",
+            "pages": ["pt/legal/terms-of-service", "pt/legal/privacy-policy"]
           }
         ]
       }
