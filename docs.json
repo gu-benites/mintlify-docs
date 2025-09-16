@@ -30,13 +30,13 @@
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Legal",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Legal",
             "pages": [
-              "api-reference/introduction",
-              "api-reference/endpoint/get"
+              "legal/terms-of-service",
+              "legal/privacy-policy"
             ]
           }
         ]
