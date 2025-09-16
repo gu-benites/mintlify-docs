@@ -1,0 +1,80 @@
+---
+title: "Início Rápido"
+description: "Comece a construir documentação incrível em minutos"
+---
+
+## Comece em três passos
+
+Tenha seu site de documentação rodando localmente e faça sua primeira personalização.
+
+### Passo 1: Configure seu ambiente local
+
+<AccordionGroup>
+  <Accordion icon="copy" title="Clone sua documentação localmente">
+    Durante o processo de configuração, você criou um repositório GitHub com o conteúdo da sua documentação. Você pode encontrar um link para este repositório em seu [painel](https://dashboard.mintlify.com).
+
+    Para clonar o repositório localmente e fazer alterações em sua documentação, siga o guia [Clonando um repositório](https://docs.github.com/pt/repositories/creating-and-managing-repositories/cloning-a-repository) na documentação do GitHub.
+  </Accordion>
+  <Accordion icon="rectangle-terminal" title="Inicie o servidor de visualização">
+    1. Instale o CLI do Mintlify: `npm i -g mint`
+    2. Navegue até o diretório da sua documentação e execute: `mint dev`
+    3. Abra `http://localhost:3000` para ver sua documentação ao vivo!
+
+    <Tip>Sua visualização é atualizada automaticamente conforme você edita os arquivos.</Tip>
+  </Accordion>
+</AccordionGroup>
+
+### Passo 2: Publique suas alterações
+
+<AccordionGroup>
+  <Accordion icon="github" title="Instale nosso app do GitHub">
+    Instale o app GitHub do Mintlify em seu [painel](https://dashboard.mintlify.com/settings/organization/github-app).
+
+    Nosso app GitHub implanta automaticamente suas alterações no site da documentação, então você não precisa gerenciar implantações sozinho.
+</Accordion>
+<Accordion icon="palette" title="Atualize o nome e cores do seu site">
+    Para uma primeira alteração, vamos atualizar o nome e cores do seu site de documentação.
+
+    1. Abra `docs.json` em seu editor.
+    2. Altere o campo `"name"` para o nome do seu projeto.
+    3. Atualize as `"colors"` para combinar com sua marca.
+    4. Salve e veja suas alterações instantaneamente em `http://localhost:3000`.
+
+    <Tip>Tente alterar a cor primária para ver uma diferença imediata!</Tip>
+  </Accordion>
+</AccordionGroup>
+
+### Passo 3: Torne público
+
+<Accordion icon="rocket" title="Publique sua documentação">
+  1. Faça commit e push das suas alterações.
+  2. Sua documentação será atualizada e estará ao vivo em momentos!
+</Accordion>
+
+## Próximos passos
+
+Agora que você tem sua documentação funcionando, explore estes recursos principais:
+
+<CardGroup cols={2}>
+
+<Card title="Escrever Conteúdo" icon="pen-to-square" href="/pt/essentials/markdown">
+  Aprenda a sintaxe MDX e comece a escrever sua documentação.
+</Card>
+
+<Card title="Personalizar estilo" icon="palette" href="/pt/essentials/navigation">
+  Faça sua documentação combinar perfeitamente com sua marca.
+</Card>
+
+<Card title="Documentação Legal" icon="file-contract" href="/pt/legal/terms-of-service">
+  Acesse nossos termos de serviço e política de privacidade.
+</Card>
+
+<Card title="Suporte" icon="life-ring" href="mailto:hello@aromachat.app">
+  Precisa de ajuda? Entre em contato conosco.
+</Card>
+
+</CardGroup>
+
+<Note>
+  **Precisa de ajuda?** Veja nossa [documentação completa](https://mintlify.com/docs) ou junte-se à nossa [comunidade](https://mintlify.com/community).
+</Note>
