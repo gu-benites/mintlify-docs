@@ -50,8 +50,13 @@
           "icon": "globe"
         },
         {
-          "anchor": "Cadastrar-se",
+          "anchor": "Sign In",
           "href": "https://accounts.aromachat.app/sign-in",
+          "icon": "right-to-bracket"
+        },
+        {
+          "anchor": "Register",
+          "href": "https://accounts.aromachat.app/sign-up",
           "icon": "user-plus"
         },
         {
