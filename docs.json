@@ -92,9 +92,57 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
-    }
+      "website": "https://aromachat.app",
+      "instagram": "https://instagram.com/aromachat"
+    },
+    "links": [
+      {
+        "header": "Product",
+        "items": [
+          {
+            "label": "AromaCHAT Site",
+            "href": "https://aromachat.app"
+          },
+          {
+            "label": "App Download",
+            "href": "https://aromachat.app"
+          },
+          {
+            "label": "Sign In",
+            "href": "https://accounts.aromachat.app/sign-in"
+          },
+          {
+            "label": "Register",
+            "href": "https://accounts.aromachat.app/sign-up"
+          }
+        ]
+      },
+      {
+        "header": "Legal",
+        "items": [
+          {
+            "label": "Terms of Service",
+            "href": "https://aromachat.mintlify.app/legal/terms-of-service"
+          },
+          {
+            "label": "Privacy Policy",
+            "href": "https://aromachat.mintlify.app/legal/privacy-policy"
+          }
+        ]
+      },
+      {
+        "header": "Support",
+        "items": [
+          {
+            "label": "Contact Us",
+            "href": "mailto:hello@aromachat.app"
+          },
+          {
+            "label": "Documentation",
+            "href": "https://aromachat.mintlify.app"
+          }
+        ]
+      }
+    ]
   }
 }
