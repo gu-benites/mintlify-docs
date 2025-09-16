@@ -1,4 +1,32 @@
 ---
-title: 'Get Plants'
-openapi: 'GET /plants'
+title: 'Get Items'
+description: 'Retrieve a list of items from the API'
 ---
+
+## Endpoint
+
+```http
+GET /api/items
+```
+
+## Parameters
+
+| Parameter | Type   | Required | Description                    |
+|-----------|--------|----------|--------------------------------|
+| limit     | number | No       | Maximum number of items to return |
+| offset    | number | No       | Number of items to skip        |
+
+## Response
+
+```json
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Example Item",
+      "description": "This is an example item"
+    }
+  ],
+  "total": 1
+}
+```
