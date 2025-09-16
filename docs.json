@@ -26,6 +26,13 @@
               "essentials/navigation",
               "essentials/markdown"
             ]
+          },
+          {
+            "group": "Legal",
+            "pages": [
+              "legal/terms-of-service",
+              "legal/privacy-policy"
+            ]
           }
         ]
       },
