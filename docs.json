@@ -32,6 +32,7 @@
       },
       {
         "language": "pt",
+        "locale": "pt-BR",
         "dropdowns": [
           {
             "dropdown": "Documentação",
