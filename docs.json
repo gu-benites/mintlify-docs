@@ -45,19 +45,19 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "AromaCHAT Site",
+          "href": "https://aromachat.app",
+          "icon": "globe"
         },
         {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
+          "anchor": "Cadastrar-se",
+          "href": "https://accounts.aromachat.app/sign-in",
+          "icon": "user-plus"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "App Download",
+          "href": "#",
+          "icon": "mobile"
         }
       ]
     }
