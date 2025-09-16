@@ -78,3 +78,212 @@ Now that you have your docs running, explore these key features:
 <Note>
   **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
 </Note>
+
+## Titles
+
+Best used for section headers.
+
+```md
+## Titles
+```
+
+### Subtitles
+
+Best used for subsection headers.
+
+```md
+### Subtitles
+```
+
+<Tip>
+
+Each **title** and **subtitle** creates an anchor and also shows up on the table of contents on the right.
+
+</Tip>
+
+## Text formatting
+
+We support most markdown formatting. Simply add `**`, `_`, or `~` around text to format it.
+
+| Style         | How to write it   | Result          |
+| ------------- | ----------------- | --------------- |
+| Bold          | `**bold**`        | **bold**        |
+| Italic        | `_italic_`        | _italic_        |
+| Strikethrough | `~strikethrough~` | ~strikethrough~ |
+
+You can combine these. For example, write `**_bold and italic_**` to get **_bold and italic_** text.
+
+You need to use HTML to write superscript and subscript text. That is, add `<sup>` or `<sub>` around your text.
+
+| Text Size   | How to write it          | Result                 |
+| ----------- | ------------------------ | ---------------------- |
+| Superscript | `<sup>superscript</sup>` | <sup>superscript</sup> |
+| Subscript   | `<sub>subscript</sub>`   | <sub>subscript</sub>   |
+
+## Linking to pages
+
+You can add a link by wrapping text in `[]()`. You would write `[link to google](https://google.com)` to [link to google](https://google.com).
+
+Links to pages in your docs need to be root-relative. Basically, you should include the entire folder path. For example, `[link to text](/writing-content/text)` links to the page "Text" in our components section.
+
+Relative links like `[link to text](../text)` will open slower because we cannot optimize them as easily.
+
+## Blockquotes
+
+### Singleline
+
+To create a blockquote, add a `>` in front of a paragraph.
+
+> Dorothy followed her through many of the beautiful rooms in her castle.
+
+```md
+> Dorothy followed her through many of the beautiful rooms in her castle.
+```
+
+### Multiline
+
+> Dorothy followed her through many of the beautiful rooms in her castle.
+>
+> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+
+```md
+> Dorothy followed her through many of the beautiful rooms in her castle.
+>
+> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+```
+
+### LaTeX
+
+Mintlify supports [LaTeX](https://www.latex-project.org) through the Latex component.
+
+<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
+
+```md
+<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
+```
+
+The navigation menu is the list of links on every website.
+
+You will likely update `docs.json` every time you add a new page. Pages do not show up automatically.
+
+## Navigation syntax
+
+Our navigation syntax is recursive which means you can make nested navigation groups. You don't need to include `.mdx` in page names.
+
+<CodeGroup>
+
+```json Regular Navigation
+"navigation": {
+  "tabs": [
+    {
+      "tab": "Docs",
+      "groups": [
+        {
+          "group": "Getting Started",
+          "pages": ["quickstart"]
+        }
+      ]
+    }
+  ]
+}
+```
+
+```json Nested Navigation
+"navigation": {
+  "tabs": [
+    {
+      "tab": "Docs",
+      "groups": [
+        {
+          "group": "Getting Started",
+          "pages": [
+            "quickstart",
+            {
+              "group": "Nested Reference Pages",
+              "pages": ["nested-reference-page"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+</CodeGroup>
+
+## Folders
+
+Simply put your MDX files in folders and update the paths in `docs.json`.
+
+For example, to have a page at `https://yoursite.com/your-folder/your-page` you would make a folder called `your-folder` containing an MDX file called `your-page.mdx`.
+
+<Warning>
+
+You cannot use `api` for the name of a folder unless you nest it inside another folder. Mintlify uses Next.js which reserves the top-level `api` folder for internal server calls. A folder name such as `api-reference` would be accepted.
+
+</Warning>
+
+```json Navigation With Folder
+"navigation": {
+  "tabs": [
+    {
+      "tab": "Docs",
+      "groups": [
+        {
+          "group": "Group Name",
+          "pages": ["your-folder/your-page"]
+        }
+      ]
+    }
+  ]
+}
+```
+
+## Hidden pages
+
+MDX files not included in `docs.json` will not show up in the sidebar but are accessible through the search bar and by linking directly to them.
+
+## Endpoint
+
+```http
+GET /api/items
+```
+
+## Parameters
+
+| Parameter | Type   | Required | Description                    |
+|-----------|--------|----------|--------------------------------|
+| limit     | number | No       | Maximum number of items to return |
+| offset    | number | No       | Number of items to skip        |
+
+## Response
+
+```json
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Example Item",
+      "description": "This is an example item"
+    }
+  ],
+  "total": 1
+}
+```
+<Note>
+  If you're not looking to build API reference documentation, you can delete
+  this section by removing the api-reference folder.
+</Note>
+
+## Welcome
+
+There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). This starter shows examples using MDX components.
+
+## Authentication
+
+API endpoints can be authenticated using various methods such as Bearer tokens, API keys, or OAuth.
+
+```json
+"Authorization": "Bearer YOUR_TOKEN_HERE"
+```

@@ -21,13 +21,6 @@
             ]
           },
           {
-            "group": "Essentials",
-            "pages": [
-              "essentials/navigation",
-              "essentials/markdown"
-            ]
-          },
-          {
             "group": "Legal",
             "pages": [
               "legal/terms-of-service",
@@ -94,13 +87,7 @@
   "contextual": {
     "options": [
      "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
+     "view"
    ]
   },
   "footer": {
