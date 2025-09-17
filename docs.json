@@ -22,7 +22,7 @@
           },
           {
             "group": "Legal",
-            "pages": ["legal/terms-of-service", "legal/privacy-policy", "legal/cookie-policy", "legal/eula"]
+            "pages": ["legal/terms-of-service-v2", "legal/privacy-policy", "legal/cookie-policy", "legal/eula"]
           }
         ]
       },
@@ -35,7 +35,7 @@
           },
           {
             "group": "Legal",
-            "pages": ["pt/legal/terms-of-service", "pt/legal/privacy-policy", "pt/legal/cookie-policy", "legal/eula"]
+            "pages": ["pt/legal/terms-of-service-v2", "pt/legal/privacy-policy", "pt/legal/cookie-policy", "legal/eula"]
           }
         ]
       }
@@ -124,7 +124,7 @@
         "items": [
           {
             "label": "Terms of Service",
-            "href": "https://aromachat.mintlify.app/legal/terms-of-service"
+            "href": "https://aromachat.mintlify.app/legal/terms-of-service-v2"
           },
           {
             "label": "Privacy Policy",
