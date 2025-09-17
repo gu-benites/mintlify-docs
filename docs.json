@@ -1,13 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "aspen",
+  "theme": "almond",
   "name": "AromaCHAT GO - Documentation",
   "colors": {
     "primary": "#16A34A",
     "light": "#70fe6a",
     "dark": "#15803D"
   },
-  "background": {
+  "background": {subi
     "decoration": "gradient"
   },
   "favicon": "/favicon.svg",
