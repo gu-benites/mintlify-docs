@@ -48,17 +48,17 @@
           "icon": "globe"
         },
         {
-          "anchor": "Sign In",
-          "href": "https://accounts.aromachat.app/sign-in",
-          "icon": "right-to-bracket"
-        },
-        {
           "anchor": "Register",
           "href": "https://accounts.aromachat.app/sign-up",
           "icon": "user-plus"
         },
         {
-          "anchor": "App Download",
+          "anchor": "Sign In",
+          "href": "https://accounts.aromachat.app/sign-in",
+          "icon": "right-to-bracket"
+        },
+        {
+          "anchor": "Download App",
           "href": "https://aromachat.app",
           "icon": "mobile"
         }
