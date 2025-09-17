@@ -79,6 +79,11 @@
       "href": "https://aromachat.app"
     }
   },
+  "integrations": {
+    "ga4": {
+      "measurementId": "G-5YS1VPCZX8"
+    }
+  },
   "contextual": {
     "options": [
      "copy",
