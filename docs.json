@@ -78,7 +78,7 @@
     ],
     "primary": {
       "type": "button",
-      "label": "AromaCHAT",
+      "label": "Home",
       "href": "https://aromachat.app"
     }
   },
