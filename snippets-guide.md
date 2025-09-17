@@ -1,3 +1,6 @@
+STEP 1 - Read fetch this full state of the art usage of snippets from Mintlify Official Advanced Usage at 'https://github.com/mintlify/themes/tree/0be0e068bac2752bb890259342086f9ce9c8ea84/aspen/snippets'
+STEP 2 - Read this current document to learn the official simplified documentation for Mintlify.
+
 # Reusable snippets
 
 > Reusable, custom snippets to keep content in sync

@@ -1,0 +1,178 @@
+import { safetyCategories } from '/snippets/demo_company-data.mdx';
+
+export const DisclaimerCard = ({ type = "warning", title, children, icon = "⚠️", collapsible = false }) => {
+  const typeStyles = {
+    warning: "border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20",
+    danger: "border-red-500 bg-red-50 dark:bg-red-900/20",
+    info: "border-blue-500 bg-blue-50 dark:bg-blue-900/20",
+    success: "border-green-500 bg-green-50 dark:bg-green-900/20"
+  };
+
+  const textStyles = {
+    warning: "text-yellow-800 dark:text-yellow-200",
+    danger: "text-red-800 dark:text-red-200",
+    info: "text-blue-800 dark:text-blue-200",
+    success: "text-green-800 dark:text-green-200"
+  };
+
+  const iconStyles = {
+    warning: "text-yellow-600 dark:text-yellow-400",
+    danger: "text-red-600 dark:text-red-400",
+    info: "text-blue-600 dark:text-blue-400",
+    success: "text-green-600 dark:text-green-400"
+  };
+
+  if (collapsible) {
+    return (
+      <details className={`border-l-4 ${typeStyles[type]} p-4 rounded-r-lg`}>
+        <summary className="cursor-pointer flex items-center">
+          <span className={`text-lg mr-3 ${iconStyles[type]}`}>{icon}</span>
+          <span className={`font-medium ${textStyles[type]}`}>{title}</span>
+        </summary>
+        <div className={`mt-3 pl-8 text-sm ${textStyles[type]}`}>
+          {children}
+        </div>
+      </details>
+    );
+  }
+
+  return (
+    <div className={`border-l-4 ${typeStyles[type]} p-4 rounded-r-lg`}>
+      <div className="flex items-start">
+        <span className={`text-lg mr-3 ${iconStyles[type]} flex-shrink-0`}>{icon}</span>
+        <div className="flex-1">
+          <h3 className={`font-medium ${textStyles[type]} mb-2`}>
+            {title}
+          </h3>
+          <div className={`text-sm ${textStyles[type]}`}>
+            {children}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const MedicalDisclaimer = ({ variant = "full" }) => {
+  if (variant === "compact") {
+    return (
+      <DisclaimerCard type="warning" title="Medical Disclaimer" icon="🏥">
+        This app provides educational information only and is not intended as medical advice.
+        Consult healthcare professionals before using essential oils, especially during pregnancy or with medical conditions.
+      </DisclaimerCard>
+    );
+  }
+
+  return (
+    <DisclaimerCard type="warning" title="Important Medical Disclaimer" icon="🏥" collapsible={true}>
+      <div className="space-y-3">
+        <p>
+          <strong>The Application provides educational information only and is not intended as medical advice.</strong>
+          Users acknowledge that essential oil recommendations are for educational and informational purposes only
+          and do not constitute medical advice.
+        </p>
+        <p>
+          Users must obtain doctor approval before using essential oils for any health-related purposes and should
+          consult healthcare professionals before using essential oils, especially during pregnancy, nursing, or with medical conditions.
+        </p>
+        <p>
+          The Company is not liable for allergic reactions or adverse effects from essential oil use.
+          Essential oil recommendations are for informational purposes and do not replace professional medical or aromatherapist consultation.
+        </p>
+      </div>
+    </DisclaimerCard>
+  );
+};
+
+export const AIDisclaimer = () => (
+  <DisclaimerCard type="info" title="AI Recommendations Disclaimer" icon="🤖" collapsible={true}>
+    <div className="space-y-3">
+      <p>
+        This application uses artificial intelligence to provide aromatherapy recommendations.
+        While our AI is trained on established aromatherapy practices and safety guidelines,
+        recommendations should not replace professional consultation.
+      </p>
+      <ul className="list-disc pl-6 space-y-1">
+        <li>AI recommendations are based on general patterns and may not account for individual sensitivities</li>
+        <li>Users are responsible for testing oils for sensitivity before use</li>
+        <li>Individual results may vary and are not guaranteed</li>
+        <li>The AI system is continuously learning and improving</li>
+      </ul>
+    </div>
+  </DisclaimerCard>
+);
+
+export const SafetyCard = ({ category }) => {
+  const safetyCategory = safetyCategories.find(c => c.id === category);
+  if (!safetyCategory) return null;
+
+  const levelColors = {
+    high: "border-red-500 bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200",
+    medium: "border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-200",
+    low: "border-green-500 bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-200"
+  };
+
+  const iconMap = {
+    baby: "👶",
+    users: "👨‍👩‍👧‍👦",
+    sun: "☀️",
+    droplet: "💧"
+  };
+
+  return (
+    <div className={`border-l-4 ${levelColors[safetyCategory.level]} p-4 rounded-r-lg`}>
+      <div className="flex items-center mb-2">
+        <span className="text-2xl mr-3">{iconMap[safetyCategory.icon]}</span>
+        <div>
+          <h3 className="font-semibold">{safetyCategory.title}</h3>
+          <span className="text-xs uppercase tracking-wide opacity-75">
+            {safetyCategory.level} priority
+          </span>
+        </div>
+      </div>
+      <p className="text-sm">{safetyCategory.description}</p>
+    </div>
+  );
+};
+
+export const SafetyChecklist = () => (
+  <div className="space-y-4">
+    <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">
+      Safety Checklist
+    </h3>
+    {safetyCategories.map(category => (
+      <SafetyCard key={category.id} category={category.id} />
+    ))}
+  </div>
+);
+
+export const LegalFooter = () => (
+  <div className="border-t border-slate-200 dark:border-slate-700 pt-6 mt-12">
+    <div className="grid md:grid-cols-2 gap-6">
+      <div>
+        <h4 className="font-semibold text-slate-900 dark:text-slate-100 mb-3">Legal Information</h4>
+        <div className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+          <p>© 2025 Rotina Natural Solucoes Terapeuticas LTDA</p>
+          <p>All rights reserved. AromaCHAT GO and related marks are trademarks.</p>
+        </div>
+      </div>
+      <div>
+        <h4 className="font-semibold text-slate-900 dark:text-slate-100 mb-3">Compliance</h4>
+        <div className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+          <p>✓ GDPR Compliant</p>
+          <p>✓ Mobile App Store Policies</p>
+          <p>✓ Health Information Privacy</p>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+export const QuickDisclaimers = () => (
+  <div className="grid md:grid-cols-2 gap-4">
+    <MedicalDisclaimer variant="compact" />
+    <DisclaimerCard type="info" title="Educational Content" icon="📚">
+      Content is for educational purposes and should not replace professional aromatherapy consultation.
+    </DisclaimerCard>
+  </div>
+);

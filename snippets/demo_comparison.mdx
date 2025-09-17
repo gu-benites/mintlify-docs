@@ -1,0 +1,206 @@
+export const BeforeAfter = () => (
+  <div className="grid md:grid-cols-2 gap-8">
+    <div className="space-y-4">
+      <h3 className="text-lg font-semibold text-red-600 dark:text-red-400">
+        ❌ Before: Basic Snippets
+      </h3>
+
+      <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+        <h4 className="font-medium mb-2">Simple Variables</h4>
+        <pre className="text-sm text-red-700 dark:text-red-300 whitespace-pre-wrap">{`export const companyName = 'Company Name';
+export const companyEmail = 'email@company.com';
+export const appName = 'App Name';
+
+// Usage
+Welcome to {companyName}!
+Contact: {companyEmail}`}</pre>
+      </div>
+
+      <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+        <h4 className="font-medium mb-2">Static Content</h4>
+        <div className="text-sm text-red-700 dark:text-red-300">
+          <p>Plain text disclaimers</p>
+          <p>No interactivity</p>
+          <p>No responsive design</p>
+          <p>Hard to maintain</p>
+        </div>
+      </div>
+    </div>
+
+    <div className="space-y-4">
+      <h3 className="text-lg font-semibold text-green-600 dark:text-green-400">
+        ✅ After: Advanced Components
+      </h3>
+
+      <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+        <h4 className="font-medium mb-2">Structured Data</h4>
+        <pre className="text-sm text-green-700 dark:text-green-300 whitespace-pre-wrap">{`export const company = {
+  legal: { name, businessName },
+  contact: { phone, email, support },
+  product: { appName, features[] }
+};
+
+// Usage
+<CompanyCard company={company} />
+<FeatureGrid features={company.product.features} />`}</pre>
+      </div>
+
+      <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+        <h4 className="font-medium mb-2">Interactive Components</h4>
+        <div className="text-sm text-green-700 dark:text-green-300">
+          <p>✓ Responsive design</p>
+          <p>✓ Dark/light mode</p>
+          <p>✓ Hover effects</p>
+          <p>✓ Modular & reusable</p>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+export const FeatureComparison = () => (
+  <div className="overflow-x-auto">
+    <table className="w-full border-collapse border border-slate-300 dark:border-slate-600">
+      <thead>
+        <tr className="bg-slate-50 dark:bg-slate-800">
+          <th className="border border-slate-300 dark:border-slate-600 px-4 py-2 text-left">Aspect</th>
+          <th className="border border-slate-300 dark:border-slate-600 px-4 py-2 text-left">Basic Snippets</th>
+          <th className="border border-slate-300 dark:border-slate-600 px-4 py-2 text-left">Advanced Components</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2 font-medium">Data Structure</td>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2">Flat variables</td>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2">Hierarchical objects</td>
+        </tr>
+        <tr>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2 font-medium">Interactivity</td>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2">Static text only</td>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2">Hover, animations, responsive</td>
+        </tr>
+        <tr>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2 font-medium">Maintenance</td>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2">Update each file manually</td>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2">Centralized data updates</td>
+        </tr>
+        <tr>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2 font-medium">Design</td>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2">Basic text formatting</td>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2">Professional UI components</td>
+        </tr>
+        <tr>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2 font-medium">Reusability</td>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2">Limited</td>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2">Highly modular</td>
+        </tr>
+        <tr>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2 font-medium">Theming</td>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2">No theme support</td>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2">Dark/light mode built-in</td>
+        </tr>
+        <tr>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2 font-medium">User Experience</td>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2">Basic documentation</td>
+          <td className="border border-slate-300 dark:border-slate-600 px-4 py-2">Engaging, professional</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+);
+
+export const MigrationGuide = () => (
+  <div className="space-y-6">
+    <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+      🚀 Migration Roadmap
+    </h3>
+
+    <div className="space-y-4">
+      <div className="flex items-start space-x-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+        <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-semibold">
+          1
+        </div>
+        <div>
+          <h4 className="font-semibold text-blue-900 dark:text-blue-100">Week 1: Data Restructure</h4>
+          <p className="text-blue-700 dark:text-blue-300 text-sm">
+            Convert simple variables to structured objects. Create company-data.mdx with hierarchical structure.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex items-start space-x-4 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+        <div className="flex-shrink-0 w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-semibold">
+          2
+        </div>
+        <div>
+          <h4 className="font-semibold text-green-900 dark:text-green-100">Week 2: Core Components</h4>
+          <p className="text-green-700 dark:text-green-300 text-sm">
+            Build feature cards, disclaimer components, and download buttons. Test responsive design.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex items-start space-x-4 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+        <div className="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center text-sm font-semibold">
+          3
+        </div>
+        <div>
+          <h4 className="font-semibold text-purple-900 dark:text-purple-100">Week 3: Icon System</h4>
+          <p className="text-purple-700 dark:text-purple-300 text-sm">
+            Implement SVG icon library with consistent theming. Create icon management system.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex items-start space-x-4 p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+        <div className="flex-shrink-0 w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center text-sm font-semibold">
+          4
+        </div>
+        <div>
+          <h4 className="font-semibold text-orange-900 dark:text-orange-100">Week 4: Integration</h4>
+          <p className="text-orange-700 dark:text-orange-300 text-sm">
+            Update existing pages to use new components. Test across all documentation pages.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+export const ROICalculator = () => (
+  <div className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-lg p-6">
+    <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">
+      📊 Return on Investment
+    </h3>
+
+    <div className="grid md:grid-cols-3 gap-6">
+      <div className="text-center">
+        <div className="text-3xl font-bold text-green-600 mb-2">75%</div>
+        <div className="text-sm text-slate-600 dark:text-slate-400">
+          Faster updates with centralized data
+        </div>
+      </div>
+
+      <div className="text-center">
+        <div className="text-3xl font-bold text-blue-600 mb-2">3x</div>
+        <div className="text-sm text-slate-600 dark:text-slate-400">
+          More engaging user experience
+        </div>
+      </div>
+
+      <div className="text-center">
+        <div className="text-3xl font-bold text-purple-600 mb-2">90%</div>
+        <div className="text-sm text-slate-600 dark:text-slate-400">
+          Reduction in maintenance time
+        </div>
+      </div>
+    </div>
+
+    <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700">
+      <p className="text-sm text-slate-600 dark:text-slate-400 text-center">
+        Professional appearance + Faster development + Better maintainability =
+        <strong className="text-green-600"> Significant ROI</strong>
+      </p>
+    </div>
+  </div>
+);

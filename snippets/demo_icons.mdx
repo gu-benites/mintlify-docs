@@ -1,0 +1,187 @@
+export const Icon = ({ name, className = "w-5 h-5", ...props }) => {
+  const icons = {
+    // Core App Icons
+    brain: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V7L15 1L13.5 2.5L16.17 5.17C15.24 5.06 14.32 5 13.5 5C11.84 5 10.29 5.26 8.91 5.74C7.53 6.22 6.34 6.89 5.41 7.72C4.48 8.55 3.83 9.5 3.5 10.5C3.17 11.5 3.17 12.5 3.5 13.5C3.83 14.5 4.48 15.45 5.41 16.28C6.34 17.11 7.53 17.78 8.91 18.26C10.29 18.74 11.84 19 13.5 19C14.32 19 15.24 18.94 16.17 18.83L13.5 21.5L15 23L21 17V15H21V9ZM12 8C12.55 8 13 8.45 13 9S12.55 10 12 10S11 9.55 11 9S11.45 8 12 8Z"/>
+      </svg>
+    ),
+
+    "shield-check": (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"/>
+      </svg>
+    ),
+
+    calculator: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M7,2A2,2 0 0,0 5,4V20A2,2 0 0,0 7,22H17A2,2 0 0,0 19,20V4A2,2 0 0,0 17,2H7M7,4H17V20H7V4M8,5V8H16V5H8M8,9V10H10V9H8M11,9V10H13V9H11M14,9V10H16V9H14M8,11V12H10V11H8M11,11V12H13V11H11M14,11V12H16V11H14M8,13V14H10V13H8M11,13V14H13V13H11M14,13V14H16V13H14M8,15V16H10V15H8M11,15V16H13V15H11M14,15V16H16V15H14M8,17V18H10V17H8M11,17V18H13V17H11M14,17V18H16V17H14"/>
+      </svg>
+    ),
+
+    "graduation-cap": (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
+      </svg>
+    ),
+
+    globe: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M20.64,15.59L17.59,12.54L16,11V10L17,9H15L13.09,7.09C13.65,7.04 14.32,7 15,7A2,2 0 0,0 17,5V4.59C19.24,5.88 20.77,8.25 20.92,11H19A2,2 0 0,0 17,13V14L20.64,17.64C20.77,16.97 20.88,16.29 20.64,15.59Z"/>
+      </svg>
+    ),
+
+    clock: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,14.7L16.2,16.2Z"/>
+      </svg>
+    ),
+
+    // Safety Icons
+    warning: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z"/>
+      </svg>
+    ),
+
+    baby: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M18,2A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2H18M11,4V6.5C9.5,6.5 8.5,7.5 8.5,9C8.5,10.5 9.5,11.5 11,11.5V14L10,15L8.5,13.5L7,15L10,18H14L17,15L15.5,13.5L14,15L13,14V11.5C14.5,11.5 15.5,10.5 15.5,9C15.5,7.5 14.5,6.5 13,6.5V4H11Z"/>
+      </svg>
+    ),
+
+    sun: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8M12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z"/>
+      </svg>
+    ),
+
+    droplet: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25S18,10 18,14A6,6 0 0,1 12,20Z"/>
+      </svg>
+    ),
+
+    // Platform Icons
+    mobile: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M17,19H7V5H17M17,1H7C5.89,1 5,1.89 5,3V21A2,2 0 0,0 7,23H17A2,2 0 0,0 19,21V3C19,1.89 18.1,1 17,1Z"/>
+      </svg>
+    ),
+
+    desktop: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M21,16V4H3V16H21M21,2A2,2 0 0,1 23,4V16A2,2 0 0,1 21,18H14L16,21V22H8V21L10,18H3C1.89,18 1,17.1 1,16V4C1,2.89 1.89,2 3,2H21Z"/>
+      </svg>
+    ),
+
+    // Action Icons
+    download: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/>
+      </svg>
+    ),
+
+    link: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+      </svg>
+    ),
+
+    check: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
+      </svg>
+    ),
+
+    "x-mark": (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+      </svg>
+    ),
+
+    // Social Icons
+    instagram: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/>
+      </svg>
+    ),
+
+    email: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/>
+      </svg>
+    ),
+
+    // Status Icons
+    star: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.46,13.97L5.82,21L12,17.27Z"/>
+      </svg>
+    ),
+
+    heart: (
+      <svg className={className} fill="currentColor" viewBox="0 0 24 24" {...props}>
+        <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/>
+      </svg>
+    )
+  };
+
+  if (!icons[name]) {
+    console.warn(`Icon "${name}" not found`);
+    return <span className={className}>?</span>;
+  }
+
+  return icons[name];
+};
+
+export const IconList = () => {
+  const iconCategories = {
+    "Core Features": ["brain", "shield-check", "calculator", "graduation-cap", "globe", "clock"],
+    "Safety": ["warning", "baby", "sun", "droplet"],
+    "Platform": ["mobile", "desktop"],
+    "Actions": ["download", "link", "check", "x-mark"],
+    "Social": ["instagram", "email"],
+    "Status": ["star", "heart"]
+  };
+
+  return (
+    <div className="space-y-8">
+      {Object.entries(iconCategories).map(([category, iconNames]) => (
+        <div key={category}>
+          <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">
+            {category}
+          </h3>
+          <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
+            {iconNames.map((iconName) => (
+              <div key={iconName} className="flex flex-col items-center p-3 bg-slate-50 dark:bg-slate-800 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                <Icon name={iconName} className="w-6 h-6 mb-2 text-slate-700 dark:text-slate-300" />
+                <span className="text-xs text-slate-600 dark:text-slate-400 text-center">
+                  {iconName}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export const IconExample = ({ name, size = "md" }) => {
+  const sizes = {
+    sm: "w-4 h-4",
+    md: "w-6 h-6",
+    lg: "w-8 h-8",
+    xl: "w-12 h-12"
+  };
+
+  return (
+    <div className="flex items-center space-x-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-lg">
+      <Icon name={name} className={`${sizes[size]} text-green-600`} />
+      <code className="text-sm text-slate-600 dark:text-slate-400">
+        &lt;Icon name="{name}" className="{sizes[size]}" /&gt;
+      </code>
+    </div>
+  );
+};

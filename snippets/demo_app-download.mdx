@@ -1,0 +1,184 @@
+import { company } from '/snippets/demo_company-data.mdx';
+
+export const downloadLinks = {
+  ios: {
+    url: "https://apps.apple.com/app/aromachat-go",
+    icon: "🍎",
+    label: "Download for iOS",
+    subtitle: "Available on the App Store",
+    requirements: "iOS 14.0 or later"
+  },
+  android: {
+    url: "https://play.google.com/store/apps/details?id=com.aromachat.go",
+    icon: "🤖",
+    label: "Get it on Google Play",
+    subtitle: "Available on Google Play",
+    requirements: "Android 6.0 or later"
+  }
+};
+
+export const DownloadButton = ({ platform, variant = "default", size = "md" }) => {
+  const download = downloadLinks[platform];
+  if (!download) return null;
+
+  const sizeStyles = {
+    sm: "px-4 py-2 text-sm",
+    md: "px-6 py-3 text-base",
+    lg: "px-8 py-4 text-lg"
+  };
+
+  const variantStyles = {
+    default: "bg-slate-900 hover:bg-slate-800 text-white border-slate-900",
+    outline: "bg-transparent hover:bg-slate-50 text-slate-900 border-slate-300 dark:text-slate-100 dark:border-slate-600 dark:hover:bg-slate-800",
+    primary: "bg-green-600 hover:bg-green-700 text-white border-green-600"
+  };
+
+  return (
+    <a
+      href={download.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`
+        inline-flex items-center justify-center border rounded-lg font-medium transition-all duration-200
+        hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500
+        ${sizeStyles[size]} ${variantStyles[variant]}
+      `}
+    >
+      <span className="text-2xl mr-3">{download.icon}</span>
+      <div className="text-left">
+        <div className="font-semibold">{download.label}</div>
+        {size !== "sm" && (
+          <div className="text-xs opacity-75">{download.subtitle}</div>
+        )}
+      </div>
+    </a>
+  );
+};
+
+export const AppDownload = ({ platform = "both", variant = "default", layout = "horizontal" }) => {
+  const platforms = platform === "both" ? ["ios", "android"] : [platform];
+
+  if (layout === "vertical") {
+    return (
+      <div className="flex flex-col space-y-4">
+        {platforms.map((p) => (
+          <DownloadButton key={p} platform={p} variant={variant} size="lg" />
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col sm:flex-row gap-4">
+      {platforms.map((p) => (
+        <DownloadButton key={p} platform={p} variant={variant} />
+      ))}
+    </div>
+  );
+};
+
+export const AppDownloadHero = () => (
+  <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-2xl p-8 text-center">
+    <div className="max-w-2xl mx-auto">
+      <div className="text-6xl mb-6">📱</div>
+      <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-4">
+        Download {company.product.appName}
+      </h2>
+      <p className="text-lg text-slate-600 dark:text-slate-400 mb-8">
+        {company.product.tagline}
+      </p>
+
+      <AppDownload variant="primary" />
+
+      <div className="mt-6 grid md:grid-cols-2 gap-4 text-sm text-slate-600 dark:text-slate-400">
+        <div className="flex items-center justify-center">
+          <span className="mr-2">🍎</span>
+          {downloadLinks.ios.requirements}
+        </div>
+        <div className="flex items-center justify-center">
+          <span className="mr-2">🤖</span>
+          {downloadLinks.android.requirements}
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+export const QuickActions = () => (
+  <div className="flex flex-wrap gap-3">
+    <a
+      href={company.digital.website}
+      className="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors"
+    >
+      🌐 Visit Website
+    </a>
+    <a
+      href={company.digital.signIn}
+      className="inline-flex items-center px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-900 rounded-lg font-medium transition-colors dark:bg-slate-700 dark:text-slate-100 dark:hover:bg-slate-600"
+    >
+      🔐 Sign In
+    </a>
+    <a
+      href={company.digital.signUp}
+      className="inline-flex items-center px-4 py-2 border border-slate-300 hover:bg-slate-50 text-slate-900 rounded-lg font-medium transition-colors dark:border-slate-600 dark:text-slate-100 dark:hover:bg-slate-800"
+    >
+      👤 Register
+    </a>
+  </div>
+);
+
+export const AppStats = () => (
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <div className="space-y-2">
+      <div className="text-2xl font-bold text-green-600">500K+</div>
+      <div className="text-sm text-slate-600 dark:text-slate-400">Downloads</div>
+    </div>
+    <div className="space-y-2">
+      <div className="text-2xl font-bold text-green-600">4.8★</div>
+      <div className="text-sm text-slate-600 dark:text-slate-400">App Store Rating</div>
+    </div>
+    <div className="space-y-2">
+      <div className="text-2xl font-bold text-green-600">50+</div>
+      <div className="text-sm text-slate-600 dark:text-slate-400">Essential Oils</div>
+    </div>
+    <div className="space-y-2">
+      <div className="text-2xl font-bold text-green-600">24/7</div>
+      <div className="text-sm text-slate-600 dark:text-slate-400">AI Support</div>
+    </div>
+  </div>
+);
+
+export const PlatformSupport = () => (
+  <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-6">
+    <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">
+      Platform Support
+    </h3>
+    <div className="grid md:grid-cols-2 gap-4">
+      <div className="flex items-center space-x-3">
+        <span className="text-2xl">🍎</span>
+        <div>
+          <div className="font-medium text-slate-900 dark:text-slate-100">iOS</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">
+            iPhone, iPad, Apple Watch
+          </div>
+        </div>
+      </div>
+      <div className="flex items-center space-x-3">
+        <span className="text-2xl">🤖</span>
+        <div>
+          <div className="font-medium text-slate-900 dark:text-slate-100">Android</div>
+          <div className="text-sm text-slate-600 dark:text-slate-400">
+            Phones, Tablets, Wear OS
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700">
+      <div className="text-sm text-slate-600 dark:text-slate-400">
+        <p className="mb-2">🌍 Available in: English, Portuguese</p>
+        <p>💾 Offline mode available for downloaded recipes</p>
+      </div>
+    </div>
+  </div>
+);
