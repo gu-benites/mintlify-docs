@@ -1,11 +1,14 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "AromaCHAT Docs",
   "colors": {
-    "primary": "#70fe6a",
-    "light": "#16fabc",
+    "primary": "#16A34A",
+    "light": "#70fe6a",
     "dark": "#15803D"
+  },
+  "background": {
+    "decoration": "gradient"
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -19,7 +22,7 @@
           },
           {
             "group": "Legal",
-            "pages": ["legal/terms-of-service", "legal/privacy-policy"]
+            "pages": ["legal/terms-of-service", "legal/privacy-policy", "legal/cookie-policy", "legal/eula"]
           }
         ]
       },
@@ -32,7 +35,7 @@
           },
           {
             "group": "Legal",
-            "pages": ["pt/legal/terms-of-service", "pt/legal/privacy-policy"]
+            "pages": ["pt/legal/terms-of-service", "pt/legal/privacy-policy", "pt/legal/cookie-policy", "legal/eula"]
           }
         ]
       }
@@ -86,8 +89,7 @@
   },
   "contextual": {
     "options": [
-     "copy",
-     "view"
+     "copy"
    ]
   },
   "footer": {
@@ -127,6 +129,14 @@
           {
             "label": "Privacy Policy",
             "href": "https://aromachat.mintlify.app/legal/privacy-policy"
+          },
+          {
+            "label": "Cookie Policy",
+            "href": "https://aromachat.mintlify.app/legal/cookie-policy"
+          },
+          {
+            "label": "EULA",
+            "href": "https://aromachat.mintlify.app/legal/eula"
           }
         ]
       },

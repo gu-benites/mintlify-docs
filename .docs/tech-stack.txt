@@ -1,0 +1,351 @@
+# AromaCHAT Go - Technology Stack
+
+## Overview
+
+This document provides comprehensive details about the technology choices, versions, configurations, and rationale behind AromaCHAT Go's tech stack. It serves as the definitive reference for understanding our technical architecture and dependencies.
+
+## Core Technology Stack
+
+### Runtime & Framework
+
+| Technology | Version | Purpose | Configuration |
+|------------|---------|---------|---------------|
+| **React Native** | 0.79.5 | Cross-platform mobile framework | Hermes JS engine enabled |
+| **Expo** | 53.0.0 | Development platform and toolchain | Managed workflow with EAS |
+| **Node.js** | 18+ | Development environment | Required for Metro bundler |
+| **TypeScript** | 5.8.3 | Type safety and developer experience | Strict mode enabled |
+
+#### React Native Configuration
+```json
+// metro.config.js
+const { getDefaultConfig } = require('expo/metro-config');
+const config = getDefaultConfig(__dirname);
+module.exports = config;
+```
+
+#### TypeScript Configuration
+```json
+// tsconfig.json key settings
+{
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  }
+}
+```
+
+### UI Framework & Design System
+
+| Technology | Version | Purpose | Notes |
+|------------|---------|---------|--------|
+| **React Native Paper** | 5.14.5 | Material Design 3 components | Primary UI library |
+| **React Native Vector Icons** | 10.2.0+ | Icon system | Material Community Icons preferred |
+| **React Native Reanimated** | 3.17.4 | High-performance animations | 60fps requirement |
+| **React Native Gesture Handler** | 2.24.0 | Touch interactions | Required by Reanimated |
+| **React Native SVG** | 15.11.2 | SVG support | For custom icons and graphics |
+
+#### Material Design 3 Implementation
+- **Theme Source**: `src/shared/styles/material-theme.json`
+- **Design Tokens**: `src/shared/styles/design-tokens.ts`
+- **Custom Components**: Instagram-style modals, enhanced ScreenWrapper
+
+### Navigation & Routing
+
+| Technology | Version | Purpose | Configuration |
+|------------|---------|---------|---------------|
+| **Expo Router** | 5.0.2 | File-based routing | Typed routes enabled |
+| **React Navigation** | 7.1.17 | Navigation library | Dependency of Expo Router |
+
+#### Expo Router Configuration
+```typescript
+// app.json
+{
+  "expo": {
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
+```
+
+**Routing Structure**:
+- `app/(auth)/` - Authentication flow
+- `app/(tabs)/` - Main application tabs
+- `app/(tabs)/create-recipe/` - Recipe wizard flow
+
+### State Management
+
+| Technology | Version | Purpose | Use Cases |
+|------------|---------|---------|-----------|
+| **Zustand** | 5.0.7 | Lightweight state management | Global app state |
+| **React Context** | Built-in | Component tree state | Theme, i18n, user preferences |
+| **React Hook Form** | 7.62.0 | Form state management | Complex forms with validation |
+
+#### State Architecture
+```typescript
+// Example Zustand store structure
+interface AppState {
+  // User data
+  user: User | null;
+  
+  // UI state
+  theme: 'light' | 'dark' | 'system';
+  
+  // Recipe wizard state
+  wizard: {
+    currentStep: number;
+    healthConcern: string;
+    // ... other wizard state
+  };
+  
+  // Actions
+  setUser: (user: User | null) => void;
+  updateWizardStep: (step: Partial<WizardState>) => void;
+}
+```
+
+### Authentication & Security
+
+| Technology | Version | Purpose | Integration |
+|------------|---------|---------|-------------|
+| **Clerk** | 2.14.14 | Authentication platform | Complete auth solution |
+| **Expo Secure Store** | 14.2.3 | Secure local storage | Sensitive data storage |
+
+#### Clerk Configuration
+```typescript
+// app/_layout.tsx
+<ClerkProvider 
+  tokenCache={tokenCache}
+  publishableKey={process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!}
+>
+  <InitialLayout />
+</ClerkProvider>
+```
+
+### Internationalization
+
+| Technology | Version | Purpose | Configuration |
+|------------|---------|---------|---------------|
+| **i18next** | 25.3.2 | Internationalization framework | Core i18n functionality |
+| **react-i18next** | 15.6.1 | React integration | Hook-based API |
+| **expo-localization** | 16.1.6 | Device locale detection | Automatic locale detection |
+
+#### i18n Architecture
+- **Namespace-based**: Separate files per feature/screen
+- **Supported Locales**: English (en), Portuguese (pt)
+- **File Structure**: `src/shared/locales/{locale}/{namespace}.json`
+
+### API & Networking
+
+| Technology | Version | Purpose | Configuration |
+|------------|---------|---------|---------------|
+| **Axios** | (via dependencies) | HTTP client | Custom client configuration |
+| **Server-Sent Events** | Custom | Real-time AI streaming | Mobile-optimized SSE client |
+
+#### API Client Configuration
+```typescript
+// src/shared/services/api/rotinanatural-client.ts
+const apiClient = axios.create({
+  baseURL: process.env.EXPO_PUBLIC_API_URL,
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+```
+
+### Analytics & Monitoring
+
+| Technology | Version | Purpose | Configuration |
+|------------|---------|---------|---------------|
+| **Sentry** | 6.20.0 | Error tracking and performance | Expo plugin integration |
+| **PostHog** | 4.4.0 | User analytics and feature flags | React Native integration |
+
+#### Monitoring Setup
+```typescript
+// Sentry configuration
+Sentry.init({
+  dsn: process.env.EXPO_PUBLIC_SENTRY_DSN,
+  enableInExpoDevelopment: false,
+  debug: __DEV__,
+});
+
+// PostHog configuration
+const posthogClient = new PostHog(
+  process.env.EXPO_PUBLIC_POSTHOG_API_KEY!,
+  {
+    host: process.env.EXPO_PUBLIC_POSTHOG_HOST,
+    enableSessionRecording: true,
+  }
+);
+```
+
+### Development Tools
+
+| Technology | Version | Purpose | Usage |
+|------------|---------|---------|--------|
+| **ESLint** | 9.0.0 | Code linting | Expo config with custom rules |
+| **Prettier** | Latest | Code formatting | Integrated with ESLint |
+| **Knip** | 5.62.0 | Dependency analysis | Find unused dependencies |
+| **Jest** | (via Expo) | Testing framework | Unit and integration tests |
+| **Playwright** | 1.54.2 | E2E testing | Mobile app testing |
+
+#### Development Scripts
+```json
+{
+  "scripts": {
+    "dev": "EXPO_NO_TELEMETRY=1 expo start",
+    "start": "EXPO_NO_TELEMETRY=1 expo start --tunnel",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "lint": "expo lint",
+    "build:web": "expo export --platform web"
+  }
+}
+```
+
+### Build & Deployment
+
+| Technology | Version | Purpose | Configuration |
+|------------|---------|---------|---------------|
+| **EAS Build** | Latest | Cloud build service | Production builds |
+| **Expo Dev Client** | 5.2.4 | Custom development builds | Enhanced debugging |
+| **Metro** | (via Expo) | JavaScript bundler | React Native bundler |
+
+#### EAS Configuration
+```json
+// eas.json
+{
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {}
+  }
+}
+```
+
+## Performance Optimizations
+
+### Bundle Analysis
+- **Metro bundler**: Automatic code splitting
+- **Tree shaking**: Unused code elimination
+- **Image optimization**: Expo Image with WebP support
+
+### Runtime Performance
+- **Hermes JS Engine**: Improved startup time and memory usage
+- **React Native Reanimated**: 60fps animations
+- **Flipper integration**: Development debugging
+
+## Security Considerations
+
+### Data Protection
+- **Expo Secure Store**: Sensitive data storage
+- **HTTPS only**: All API communications
+- **Token rotation**: Automatic auth token refresh
+
+### Code Security
+- **No sensitive data in source**: Environment variables for secrets
+- **Input validation**: Zod schemas for data validation
+- **Error handling**: No sensitive data in error messages
+
+## Development Environment Requirements
+
+### System Requirements
+- **Node.js**: 18.x or higher
+- **npm**: 9.x or higher (or yarn/pnpm equivalent)
+- **Expo CLI**: Latest version
+- **EAS CLI**: For cloud builds
+
+### Mobile Development Setup
+- **iOS**: Xcode 14+ (macOS only)
+- **Android**: Android Studio with SDK 33+
+- **Simulators**: iOS Simulator, Android Emulator
+
+### Recommended VS Code Extensions
+- **Expo Tools**: Official Expo support
+- **React Native Tools**: Debugging and IntelliSense
+- **TypeScript**: Enhanced TypeScript support
+- **ESLint**: Real-time linting
+- **Prettier**: Code formatting
+- **i18n Ally**: Translation management
+
+## Dependency Management
+
+### Expo SDK Compatibility
+All dependencies are carefully selected for Expo SDK 53 compatibility:
+
+```json
+{
+  "expo": "^53.0.0",
+  "react": "19.0.0",
+  "react-native": "0.79.5"
+}
+```
+
+### Version Pinning Strategy
+- **Major versions**: Pinned to prevent breaking changes
+- **Minor versions**: Caret (^) for feature updates
+- **Critical dependencies**: Exact versions for stability
+
+### Upgrade Path
+1. **Expo SDK upgrades**: Follow Expo upgrade guide
+2. **React Native upgrades**: Via Expo SDK updates
+3. **Major dependency upgrades**: Gradual rollout with testing
+
+## Environment Configuration
+
+### Environment Variables
+```bash
+# API Configuration
+EXPO_PUBLIC_API_URL=https://api.aromachat.com
+EXPO_PUBLIC_API_VERSION=v1
+
+# Authentication
+EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_...
+
+# Analytics
+EXPO_PUBLIC_SENTRY_DSN=https://...
+EXPO_PUBLIC_POSTHOG_API_KEY=phc_...
+EXPO_PUBLIC_POSTHOG_HOST=https://...
+
+# Feature Flags
+EXPO_PUBLIC_ENABLE_ANALYTICS=true
+EXPO_PUBLIC_ENABLE_DEBUG_SCREENS=false
+```
+
+### Configuration by Environment
+- **Development**: Debug enabled, local API, test analytics
+- **Staging**: Production-like, staging API, limited analytics
+- **Production**: Optimized build, production API, full analytics
+
+## Future Technology Considerations
+
+### Planned Upgrades
+- **Expo SDK 54**: Next major release
+- **React Native 0.80+**: When available through Expo
+- **New Architecture**: When stable in Expo
+
+### Technology Evaluation Criteria
+1. **Expo compatibility**: Must work in managed workflow
+2. **Bundle size impact**: Minimize app size
+3. **Performance impact**: Maintain 60fps standard
+4. **Maintenance burden**: Prefer well-maintained libraries
+5. **Community adoption**: Established ecosystem support
+
+### Potential Additions
+- **React Query**: For server state management
+- **Flipper plugins**: Enhanced debugging
+- **Detox**: Additional E2E testing
+- **Storybook**: Component documentation
+
+---
+
+**This technology stack is optimized for AromaCHAT Go's requirements of premium mobile UX, AI integration, and rapid development cycles while maintaining stability and performance.**

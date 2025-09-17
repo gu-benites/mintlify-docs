@@ -1,0 +1,366 @@
+# AromaCHAT Go - Brownfield Architecture Document
+
+## Introduction
+
+This document captures the CURRENT STATE of the AromaCHAT Go React Native/Expo mobile application codebase. It serves as a reference for AI agents and senior developers working on mobile feature enhancements, UI improvements, and following UX/UI guidelines.
+
+### Document Scope
+
+Comprehensive documentation of the React Native/Expo frontend system focusing on UI patterns, mobile interactions, and development standards for feature enhancement work.
+
+### Change Log
+
+| Date   | Version | Description                 | Author    |
+| ------ | ------- | --------------------------- | --------- |
+| 2025-01-21 | 1.0     | Initial brownfield analysis | Analyst |
+
+## Quick Reference - Key Files and Entry Points
+
+### Critical Files for Understanding the System
+
+- **Main Entry**: `src/app/_layout.tsx` (Root layout with providers)
+- **App Configuration**: `app.json`, `expo.json` (Expo configuration)
+- **Theme System**: `src/shared/styles/material-theme.json`
+- **Design Principles**: `src/context/design-principles.md`
+- **UX Guide**: `src/context/aromachat_ux_guide.md` (COMPLETE implementation guide)
+- **Screen Wrapper**: `src/shared/components/layout/screen-wrapper.tsx` (MANDATORY for all screens)
+- **i18n System**: `src/shared/locales/i18n.ts`
+
+### Key UI Components and Patterns
+
+- **Layout System**: `src/shared/components/layout/`
+- **Modal System**: `src/shared/components/modals/` (Instagram-style custom modals)
+- **Theme Hooks**: `src/shared/hooks/use-theme.ts`, `src/shared/hooks/use-design-tokens.ts`
+- **Haptic System**: `src/shared/utils/haptics.ts`, `src/shared/providers/haptics-provider.tsx`
+
+## High Level Architecture
+
+### Technical Summary
+
+**AromaCHAT Go** is a React Native/Expo mobile application for essential oil recipe creation and aromatherapy guidance. The architecture follows a content-first design philosophy with strict Material Design 3 compliance and comprehensive accessibility standards.
+
+### Actual Tech Stack
+
+| Category  | Technology | Version | Notes                      |
+| --------- | ---------- | ------- | -------------------------- |
+| Runtime   | React Native | 0.79.5    | Latest stable with Hermes |
+| Framework | Expo | 53.0.0  | Managed workflow with typed routes |
+| UI Library | React Native Paper | 5.14.5 | Material Design 3 implementation |
+| Navigation | Expo Router | 5.0.2 | File-based routing with typed routes |
+| State Management | Zustand | 5.0.7 | Lightweight state management |
+| Authentication | Clerk | 2.14.14 | Complete auth solution |
+| Internationalization | i18next | 25.3.2 | Namespace-based translations |
+| Animations | React Native Reanimated | 3.17.4 | 60fps animations |
+| Error Tracking | Sentry | 6.20.0 | Production error monitoring |
+| Analytics | PostHog | 4.4.0 | User analytics and feature flags |
+
+### Repository Structure Reality Check
+
+- Type: Monorepo with modular architecture
+- Package Manager: npm (lockfile: package-lock.json)
+- Notable: Strict file organization with shared components and feature-based routing
+
+## Source Tree and Module Organization
+
+### Project Structure (Actual)
+
+```text
+aromachat/
+├── src/
+│   ├── app/                     # Expo Router file-based routing
+│   │   ├── (auth)/              # Authentication group
+│   │   ├── (tabs)/              # Main app tabs group
+│   │   │   ├── create-recipe/   # Recipe creation wizard flow
+│   │   │   └── demo/            # Development demo screens
+│   │   ├── _layout.tsx          # Root layout with providers
+│   │   └── index.tsx            # Landing/redirect screen
+│   ├── shared/                  # Shared utilities and components
+│   │   ├── components/          # Reusable UI components
+│   │   │   ├── layout/          # ScreenWrapper, AppBar, BottomNav
+│   │   │   └── modals/          # Custom Instagram-style modal system
+│   │   ├── hooks/               # Custom React hooks
+│   │   ├── styles/              # Theme system and design tokens
+│   │   ├── locales/             # i18n translations (en, pt)
+│   │   ├── services/            # API clients and integrations
+│   │   └── utils/               # Utility functions
+│   ├── context/                 # Documentation and design guidelines
+│   └── features/                # Feature-specific modules
+├── assets/                      # Static assets (images, fonts)
+├── scripts/                     # Build and utility scripts
+└── [config files]              # package.json, app.json, etc.
+```
+
+### Key Modules and Their Purpose
+
+- **Authentication Flow**: `src/app/(auth)/` - Clerk-based sign-in/sign-up with welcome screens
+- **Recipe Creation Wizard**: `src/app/(tabs)/create-recipe/` - Multi-step form flow for aromatherapy recipes
+- **Layout System**: `src/shared/components/layout/` - ScreenWrapper (MANDATORY), AppBar, BottomNavigation
+- **Modal System**: `src/shared/components/modals/` - Custom Instagram-style modals (NEVER use RN Paper modals)
+- **Theme System**: `src/shared/styles/` - Material Design 3 implementation with design tokens
+- **Haptic System**: `src/shared/utils/haptics.ts` - Platform-specific haptic feedback
+- **i18n System**: `src/shared/locales/` - Namespace-based internationalization
+
+## Data Models and APIs
+
+### Frontend State Management
+
+- **Zustand Stores**: Lightweight state management (see `src/shared/hooks/`)
+- **User Preferences**: `src/shared/contexts/user-preferences-context.tsx`
+- **Auth State**: Managed by Clerk provider in `src/app/_layout.tsx`
+
+### API Integration Points
+
+- **Rotinanatural Client**: `src/shared/services/api/rotinanatural-client.ts` - Main API client
+- **AI Streaming**: `src/shared/hooks/use-ai-streaming.ts` - Server-sent events for AI responses
+- **Mobile SSE Client**: `src/shared/utils/mobile-sse-client.ts` - Mobile-optimized SSE handling
+
+### Data Flow Patterns
+
+- User interactions → State updates (Zustand) → UI re-renders
+- API calls → Streaming responses → Real-time UI updates
+- Theme changes → Global theme context → Component re-styling
+
+## Critical Design System Implementation
+
+### MANDATORY ScreenWrapper Usage
+
+**CRITICAL**: Every screen MUST use ScreenWrapper - no exceptions.
+
+**Location**: `src/shared/components/layout/screen-wrapper.tsx`
+
+**Features Provided**:
+- Safe area management (notches, status bars)
+- Theme integration
+- Modal provider integration
+- Pull-to-refresh with Material Design 3
+- Keyboard management
+- Haptic feedback integration
+
+**Usage Pattern**:
+```jsx
+<ScreenWrapper 
+  showAppBar={true} 
+  showBottomNav={false}
+  scrollable={true}
+  enableRefresh={true}
+  enableModals={true}
+>
+  {/* Screen content */}
+</ScreenWrapper>
+```
+
+### Theme System (Single Source of Truth)
+
+**CRITICAL**: Never hardcode colors, spacing, or typography values.
+
+**Key Files**:
+- `src/shared/styles/material-theme.json` - Material Design 3 color tokens
+- `src/shared/hooks/use-theme.ts` - Theme access hook
+- `src/shared/hooks/use-design-tokens.ts` - Design tokens hook
+
+**Usage Pattern**:
+```jsx
+const theme = usePaperTheme();
+const tokens = useDesignTokens();
+
+style={{ 
+  backgroundColor: theme.colors.surface,
+  color: theme.colors.onSurface,
+  padding: tokens.spacing.lg 
+}}
+```
+
+### Modal System Implementation
+
+**CRITICAL**: Use custom Instagram-style modals, NEVER React Native Paper modals.
+
+**Location**: `src/shared/components/modals/`
+
+**Components**:
+- `base-modal.tsx` - Core modal implementation
+- `specific-modals.tsx` - Pre-built modal variants
+- Modal provider integrated in ScreenWrapper
+
+### Haptic Feedback System
+
+**Location**: 
+- `src/shared/utils/haptics.ts` - Platform-specific haptic functions
+- `src/shared/providers/haptics-provider.tsx` - Context provider
+
+**Usage Pattern**:
+```jsx
+import { triggerHaptic } from '@/shared/utils/haptics';
+
+// On button press
+triggerHaptic('impact', 'medium');
+```
+
+## Technical Debt and Known Issues
+
+### Critical Technical Debt
+
+1. **StyleSheet.create() Usage**: Some legacy components still use hardcoded StyleSheet.create() - these need migration to theme system
+2. **Inconsistent Modal Usage**: Some screens may still use React Native Paper modals instead of custom system
+3. **Incomplete Haptic Integration**: Not all interactive elements have haptic feedback implementation
+
+### Workarounds and Gotchas
+
+- **boxShadow Usage**: Always use `boxShadow` instead of individual `shadow*` properties in React Native styles
+- **Touch Target Minimum**: All interactive elements MUST be 44x44px minimum for accessibility
+- **Theme Access**: Always use `usePaperTheme()` and `useDesignTokens()` hooks, never direct theme imports
+- **Modal System**: Custom modals required - React Native Paper modals break design consistency
+
+### Design Guidelines Compliance
+
+- **Content-First Philosophy**: Avoid heavy container-based layouts ("boxes within boxes")
+- **Typography Hierarchy**: Use semantic Text variants instead of containers for visual hierarchy
+- **Consistent Interactions**: All touchable elements must use TouchableRipple for visual feedback
+- **60fps Performance**: All animations must maintain 60fps performance standards
+
+## Integration Points and External Dependencies
+
+### Authentication Integration
+
+| Service  | Purpose  | Integration Type | Key Files                      |
+| -------- | -------- | ---------------- | ------------------------------ |
+| Clerk    | Authentication | React Provider | `src/app/_layout.tsx` |
+
+### Analytics and Monitoring
+
+| Service  | Purpose  | Integration Type | Key Files                      |
+| -------- | -------- | ---------------- | ------------------------------ |
+| Sentry   | Error Tracking | Expo Plugin | `src/shared/utils/sentry-config.ts` |
+| PostHog  | User Analytics | React Provider | `src/shared/services/integrations/posthog-clerk-integration.tsx` |
+
+### Internal Integration Points
+
+- **Expo Router**: File-based routing with typed routes enabled
+- **React Native Paper**: Material Design 3 component library
+- **i18next**: Namespace-based internationalization system
+- **Zustand**: Global state management integration
+
+## Development and Deployment
+
+### Local Development Setup
+
+1. **Install Dependencies**: `npm install`
+2. **Start Development Server**: `npm run dev` (Expo start with no telemetry)
+3. **Platform-Specific**: 
+   - iOS: `npm run ios`
+   - Android: `npm run android`
+   - Web: `npm run build:web`
+
+### Build and Deployment Process
+
+- **EAS Build**: Configured in `eas.json` for production builds
+- **Expo Development Build**: Uses `expo-dev-client` for custom development builds
+- **Web Export**: Static export via `expo export --platform web`
+
+### Development Tools
+
+- **Linting**: `npm run lint` (Expo ESLint config)
+- **Orphan Cleanup**: 
+  - List: `npm run orphans:list`
+  - Clean: `npm run orphans:clean`
+  - Logs: `npm run orphans:logs`
+
+## Testing Reality
+
+### Current Test Coverage
+
+- **Unit Tests**: Minimal - needs expansion
+- **Integration Tests**: None currently implemented
+- **Manual Testing**: Primary QA method
+- **Demo Screens**: Available in `src/app/(tabs)/demo/` for testing UI components
+
+### Testing Components Available
+
+- **Haptics Demo**: `src/app/(tabs)/demo/haptics-demo.tsx`
+- **Debug Screens**: `src/app/(tabs)/demo/debug.tsx`
+- **Modal Debug**: `src/app/(tabs)/demo/instagram-modal-debug.tsx`
+
+## UI/UX Guidelines for Feature Development
+
+### Mandatory Patterns
+
+1. **ScreenWrapper Usage**: Every screen MUST use ScreenWrapper
+2. **Theme Compliance**: No hardcoded styles - use theme system only
+3. **Material Design 3**: Follow React Native Paper component guidelines
+4. **Accessibility**: 44px minimum touch targets, proper contrast ratios
+5. **Internationalization**: Use namespace-based i18n translations
+6. **Haptic Feedback**: Implement appropriate haptic responses for interactions
+
+### Design Principles (The Golden Cross)
+
+1. **Content is the Interface** - Deprecate heavy containers
+2. **Hierarchy Through Typography** - Use type scale for visual hierarchy
+3. **Theme as Single Source of Truth** - No hardcoded styles
+4. **Structure Through Intentional Spacing** - Whitespace as invisible container
+5. **Consistent & Accessible Interactions** - Platform-aligned feedback
+
+### Component Selection Guidelines
+
+**Approved Components** (React Native Paper):
+- `Surface` instead of `Card` for most layouts
+- `TouchableRipple` for all interactive elements
+- `Button` variants for different interaction types
+- `Text` semantic variants for typography hierarchy
+
+**Forbidden Patterns**:
+- React Native Paper modals (use custom Instagram-style modals)
+- Hardcoded StyleSheet.create() with static values
+- Direct color/spacing values (use theme system)
+- Touch targets smaller than 44x44px
+
+## File Location Quick Reference
+
+### Core Implementation Files
+
+- **ScreenWrapper**: `src/shared/components/layout/screen-wrapper.tsx`
+- **Theme System**: `src/shared/styles/material-theme.json`
+- **Design Tokens**: `src/shared/styles/design-tokens.ts`
+- **Theme Hooks**: `src/shared/hooks/use-theme.ts`, `src/shared/hooks/use-design-tokens.ts`
+- **Modal System**: `src/shared/components/modals/`
+- **Haptic Utils**: `src/shared/utils/haptics.ts`
+- **i18n Config**: `src/shared/locales/i18n.ts`
+
+### Documentation Files
+
+- **Design Principles**: `src/context/design-principles.md`
+- **Complete UX Guide**: `src/context/aromachat_ux_guide.md`
+
+### Example Implementations
+
+- **Recipe Creation Flow**: `src/app/(tabs)/create-recipe/`
+- **Authentication Screens**: `src/app/(auth)/`
+- **Demo Components**: `src/app/(tabs)/demo/`
+
+## Appendix - Useful Commands and Scripts
+
+### Frequently Used Commands
+
+```bash
+npm run dev         # Start development server (no telemetry)
+npm run ios         # Run on iOS simulator
+npm run android     # Run on Android emulator
+npm run build:web   # Build web version
+npm run lint        # Run ESLint
+```
+
+### Debugging and Troubleshooting
+
+- **Expo DevTools**: Access via development server
+- **Demo Screens**: Navigate to demo tab for component testing
+- **Sentry Integration**: Production error tracking configured
+- **PostHog Analytics**: User interaction analytics available
+
+### Performance Monitoring
+
+- **60fps Requirement**: All animations must maintain 60fps
+- **Memory Management**: Use React Native performance profiler
+- **Bundle Size**: Monitor with Metro bundler analysis
+
+---
+
+**📚 For complete implementation details and component usage patterns:**  
+**See: [`src/context/aromachat_ux_guide.md`](src/context/aromachat_ux_guide.md)**
