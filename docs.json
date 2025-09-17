@@ -18,7 +18,7 @@
         "pages": [
           {
             "group": "Getting started",
-            "pages": ["index", "quickstart", "demo_showcase_simple"]
+            "pages": ["index", "quickstart"]
           },
           {
             "group": "Legal",
@@ -35,7 +35,7 @@
           },
           {
             "group": "Legal",
-            "pages": ["pt/legal/terms-of-service-v2", "pt/legal/privacy-policy", "pt/legal/cookie-policy", "legal/eula"]
+            "pages": ["pt/legal/terms-of-service-v2", "pt/legal/privacy-policy", "pt/legal/cookie-policy", "pt/legal/eula"]
           }
         ]
       }
@@ -105,17 +105,17 @@
             "label": "AromaCHAT Site",
             "href": "https://aromachat.app"
           },
-          {
-            "label": "App Download",
-            "href": "https://aromachat.app"
+                    {
+            "label": "Register",
+            "href": "https://accounts.aromachat.app/sign-up"
           },
-          {
+                    {
             "label": "Sign In",
             "href": "https://accounts.aromachat.app/sign-in"
           },
           {
-            "label": "Register",
-            "href": "https://accounts.aromachat.app/sign-up"
+            "label": "Download App",
+            "href": "https://aromachat.app"
           }
         ]
       },
