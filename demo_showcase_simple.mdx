@@ -1,0 +1,127 @@
+---
+title: "Advanced Snippets Showcase"
+description: "Demonstration of advanced snippet patterns and interactive components for AromaCHAT documentation"
+icon: "star"
+---
+
+import { company, appFeatures } from '/snippets/demo_company-data.mdx';
+
+# 🚀 Advanced Snippets Showcase
+
+Welcome to the demonstration of advanced snippet patterns for **{company.product.appName}** documentation.
+
+## 📊 Enhanced Data Structures
+
+Instead of simple variables, we now use structured data objects:
+
+**Company Information:**
+- **Legal Name:** {company.legal.name}
+- **Business Name:** {company.legal.businessName}
+- **App Name:** {company.product.appName}
+- **Tagline:** {company.product.tagline}
+- **Platforms:** {company.product.platforms.join(", ")}
+
+## 🎯 App Features
+
+### Feature 1: {appFeatures[0].title}
+**Category:** {appFeatures[0].category}
+**Description:** {appFeatures[0].description}
+
+**Benefits:**
+{appFeatures[0].benefits.map((benefit, index) => `- ${benefit}`).join('\n')}
+
+### Feature 2: {appFeatures[1].title}
+**Category:** {appFeatures[1].category}
+**Description:** {appFeatures[1].description}
+
+**Benefits:**
+{appFeatures[1].benefits.map((benefit, index) => `- ${benefit}`).join('\n')}
+
+### Feature 3: {appFeatures[2].title}
+**Category:** {appFeatures[2].category}
+**Description:** {appFeatures[2].description}
+
+**Benefits:**
+{appFeatures[2].benefits.map((benefit, index) => `- ${benefit}`).join('\n')}
+
+## 🔧 Contact Information
+
+- **Email:** {company.contact.email}
+- **Phone:** {company.contact.phone}
+- **Website:** {company.digital.website}
+- **Privacy Policy:** {company.digital.privacyPolicy}
+
+## 📱 Digital Presence
+
+- **Sign In:** [Access your account]({company.digital.signIn})
+- **Sign Up:** [Create new account]({company.digital.signUp})
+- **Main Website:** [Visit AromaCHAT]({company.digital.website})
+
+## 🛡️ Safety Information
+
+<Warning>
+**Medical Disclaimer:** This app provides educational information only and is not intended as medical advice. Consult healthcare professionals before using essential oils, especially during pregnancy or with medical conditions.
+</Warning>
+
+<Info>
+**AI Disclaimer:** This application uses artificial intelligence to provide aromatherapy recommendations. While our AI is trained on established practices, recommendations should not replace professional consultation.
+</Info>
+
+## 📋 Advanced Patterns Demonstrated
+
+### 1. Structured Data Management
+✅ Company data organized in logical groups
+✅ Feature data with comprehensive metadata
+✅ Contact information centralized
+
+### 2. Dynamic Content
+✅ Data-driven content generation
+✅ Reusable across multiple pages
+✅ Easy to maintain and update
+
+## 🎯 Usage Examples
+
+### Accessing Company Data
+```jsx
+import { company } from '/snippets/demo_company-data.mdx';
+
+// Use structured data
+Welcome to {company.product.appName}!
+Contact us at {company.contact.email}
+Visit us at {company.digital.website}
+```
+
+### Accessing Feature Data
+```jsx
+import { appFeatures } from '/snippets/demo_company-data.mdx';
+
+// Loop through features
+{appFeatures.map(feature => (
+  <div key={feature.id}>
+    <h3>{feature.title}</h3>
+    <p>{feature.description}</p>
+  </div>
+))}
+```
+
+## 🚀 Migration Benefits
+
+| Basic Approach | Advanced Approach |
+|----------------|-------------------|
+| Simple text replacement | Structured data objects |
+| Manual updates | Centralized management |
+| Limited reusability | Highly modular |
+| Static content | Dynamic generation |
+
+## 🏁 Conclusion
+
+This showcase demonstrates how to transform basic Mintlify snippets into a more sophisticated system:
+
+- **Better maintainability** through structured data
+- **Consistent information** across all pages
+- **Easier updates** with centralized data management
+- **Professional organization** with logical data grouping
+
+<Note>
+All demo components are production-ready and can be integrated into your documentation by removing the `demo_` prefix from the file names.
+</Note>

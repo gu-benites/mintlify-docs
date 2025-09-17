@@ -18,7 +18,7 @@
         "pages": [
           {
             "group": "Getting started",
-            "pages": ["index", "quickstart", "demo_showcase"]
+            "pages": ["index", "quickstart", "demo_showcase_simple"]
           },
           {
             "group": "Legal",
